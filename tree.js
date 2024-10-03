@@ -18,9 +18,9 @@ function buildTree(dataArray = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
 		}
 	}
 
+	console.log(arr);
 	console.log(mergeSort(arr));
 }
-
 
 
 function mergeSort(arr) {
@@ -31,7 +31,6 @@ function mergeSort(arr) {
 	let rigthSide = mergeSort(arr.slice(mid))
 	return merge(leftSide, rigthSide);
 }
-
 function merge(left, rigth) {
 	let newArr = [];
 	let i = 0;
@@ -46,11 +45,11 @@ function merge(left, rigth) {
 		}
 	}
 
-	if(left.length > i) {
+	while(left.length > i) {
 		newArr[k++] = left[i++]
 	}
 
-	if(rigth.length > j) {
+	while(rigth.length > j) {
 		newArr[k++] = rigth[j++]
 	}
 
