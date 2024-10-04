@@ -46,7 +46,7 @@ class Tree {
     // Leaf Node
     let prevNode = null;
     while (node !== null) {
-      if (node.root === value) {
+      if (node.root === value && node.left === null && node.right === null) {
         prevNode.left = null;
         prevNode.right = null;
       }
