@@ -19,8 +19,8 @@ tree.insert(87)  // Works
 //     console.log(`Root: ${node.root}`)
 // }
 
-// console.log(tree.height(4));
-
+tree.insert(6)
+console.log(tree.height(4));
 // console.log(tree.rebalance(tree.arr));
 
-console.log(tree.depth(87)) // Works
+// console.log(tree.depth(87)) // Works

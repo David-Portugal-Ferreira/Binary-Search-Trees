@@ -126,22 +126,40 @@ class Tree {
     return;
   }
 
-  height(node) {}
+  height(nodeHeight) {
+    let node = this.arr;
+    let height = 0;
+    let wantedNode = null;
+
+    while (node !== null) {
+      if (node.root === nodeHeight) {
+        wantedNode = node;
+        break;
+      }
+      if (node.root > nodeHeight) {
+        node = node.left;
+      } else {
+        node = node.right;
+      }
+    }
+
+    return wantedNode;
+  }
 
   depth(nodeDepth) {
-	let node = this.arr;
-	let depth = 0;
+    let node = this.arr;
+    let depth = 0;
 
-	while(node !== null) {
-		if (node.root === nodeDepth) return depth;
-		if (node.root > nodeDepth) {
-			node = node.left;
-			depth++;
-		} else {
-			node = node.right;
-			depth++;
-		}
-	}
+    while (node !== null) {
+      if (node.root === nodeDepth) return depth;
+      if (node.root > nodeDepth) {
+        node = node.left;
+        depth++;
+      } else {
+        node = node.right;
+        depth++;
+      }
+    }
   }
 
   isBalanced() {}
