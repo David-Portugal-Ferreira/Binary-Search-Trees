@@ -64,6 +64,21 @@ class Tree {
     if (callback === undefined) {
       throw new Error("You need to provide a callback function!!!");
     }
+
+	let nodes = this.arr;
+	let queue = [];
+	queue.push(nodes);
+
+	while (queue.length > 0) {
+		if(queue[0].left !== null) {
+			queue.push(queue[0].left);
+		}
+		if(queue[0].right !== null) {
+			queue.push(queue[0].right);
+		}
+		callback(queue[0]);
+		queue.shift();
+	}
   }
 
   inOrder(callback) {}
