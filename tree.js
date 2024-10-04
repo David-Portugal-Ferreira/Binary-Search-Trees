@@ -30,9 +30,41 @@ class Tree {
 
   deleteItem(value) {}
 
-  find(value) {}
+  find(value) {
+    if (this.arr.root === value)
+      return {
+        root: this.arr.root,
+        left: this.arr.left,
+        right: this.arr.right,
+      };
 
-  levelOrder(callback) {}
+	  let node = this.arr;
+	  while(node !== null) {
+		if(node.root = value) {
+			return {
+				root: node.root,
+				left: node.left.root,
+				right: node.right.root,
+			}
+		}
+		if(node.root > value) {
+			node = node.left;
+		} else {
+			node = node.right;
+		}
+	  }
+
+	  if(node === null) {
+		console.log("The value given is not present in the BST");
+		return;
+	  }
+  }
+
+  levelOrder(callback) {
+    if (callback === undefined) {
+      throw new Error("You need to provide a callback function!!!");
+    }
+  }
 
   inOrder(callback) {}
 
