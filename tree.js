@@ -4,6 +4,32 @@ class Tree {
   constructor(arr) {
     this.arr = buildTree(arr);
   }
+
+  insert(value) {
+	let insertNode = new Node(value)
+	let tmp = this.arr
+	if(insertNode.root < tmp.root) {
+		tmp = tmp.left;
+		while(tmp !== null) {
+			if (insertNode.root < tmp.root) {
+				if(tmp.left === null) {
+					tmp.left = insertNode;
+					return
+				} else {
+					tmp = tmp.left;
+				}
+			} else {
+				if(tmp.right === null) {
+					tmp.right = insertNode;
+					return
+				} else {
+					tmp = tmp.right;
+				}
+			}
+		}
+		tmp = insertNode
+	}
+  }
 }
 
 function buildTree(dataArray) {
@@ -17,11 +43,9 @@ function buildTree(dataArray) {
   }
 
   arr = mergeSort(arr);
-
-  console.log(arr);
   let nodeArray = balanceBinaryTree(arr);
 
-  console.log(nodeArray);
+  return nodeArray;
 }
 
 function mergeSort(arr) {
