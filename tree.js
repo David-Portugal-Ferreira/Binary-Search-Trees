@@ -128,7 +128,21 @@ class Tree {
 
   height(node) {}
 
-  depth(node) {}
+  depth(nodeDepth) {
+	let node = this.arr;
+	let depth = 0;
+
+	while(node !== null) {
+		if (node.root === nodeDepth) return depth;
+		if (node.root > nodeDepth) {
+			node = node.left;
+			depth++;
+		} else {
+			node = node.right;
+			depth++;
+		}
+	}
+  }
 
   isBalanced() {}
 
