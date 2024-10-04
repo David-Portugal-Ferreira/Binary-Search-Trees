@@ -6,29 +6,47 @@ class Tree {
   }
 
   insert(value) {
-	let insertNode = new Node(value)
-	let tmp = this.arr
-	if(insertNode.root < tmp.root) {
-		tmp = tmp.left;
-		while(tmp !== null) {
-			if (insertNode.root < tmp.root) {
-				if(tmp.left === null) {
-					tmp.left = insertNode;
-					return
-				} else {
-					tmp = tmp.left;
-				}
-			} else {
-				if(tmp.right === null) {
-					tmp.right = insertNode;
-					return
-				} else {
-					tmp = tmp.right;
-				}
-			}
-		}
-		tmp = insertNode
-	}
+    let insertNode = new Node(value);
+    let tmp = this.arr;
+    if (insertNode.root < tmp.root) {
+      tmp = tmp.left;
+      while (tmp !== null) {
+        if (insertNode.root < tmp.root) {
+          if (tmp.left === null) {
+            tmp.left = insertNode;
+            return;
+          } else {
+            tmp = tmp.left;
+          }
+        } else {
+          if (tmp.right === null) {
+            tmp.right = insertNode;
+            return;
+          } else {
+            tmp = tmp.right;
+          }
+        }
+      }
+    } else {
+      tmp = tmp.right;
+      while (tmp !== null) {
+        if (insertNode.root < tmp.root) {
+          if (tmp.left === null) {
+            tmp.left = insertNode;
+            return;
+          } else {
+            tmp = tmp.left;
+          }
+        } else {
+          if (tmp.right === null) {
+            tmp.right = insertNode;
+            return;
+          } else {
+            tmp = tmp.right;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -82,15 +100,15 @@ function merge(left, rigth) {
 }
 
 function balanceBinaryTree(arr) {
-	if(arr.length <= 0) return null;
-	let mid = Math.floor(arr.length / 2);
-	if(mid === 0) return new Node(arr);
+  if (arr.length <= 0) return null;
+  let mid = Math.floor(arr.length / 2);
+  if (mid === 0) return new Node(arr);
 
-	let node = new Node(arr[mid]);
-	node.left = balanceBinaryTree(arr.slice(0, mid));
-	node.right = balanceBinaryTree(arr.slice(mid + 1));
+  let node = new Node(arr[mid]);
+  node.left = balanceBinaryTree(arr.slice(0, mid));
+  node.right = balanceBinaryTree(arr.slice(mid + 1));
 
-	return node;
+  return node;
 }
 
 module.exports = Tree;
