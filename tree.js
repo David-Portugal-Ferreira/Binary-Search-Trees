@@ -38,26 +38,26 @@ class Tree {
         right: this.arr.right,
       };
 
-	  let node = this.arr;
-	  while(node !== null) {
-		if(node.root = value) {
-			return {
-				root: node.root,
-				left: node.left.root,
-				right: node.right.root,
-			}
-		}
-		if(node.root > value) {
-			node = node.left;
-		} else {
-			node = node.right;
-		}
-	  }
+    let node = this.arr;
+    while (node !== null) {
+      if ((node.root = value)) {
+        return {
+          root: node.root,
+          left: node.left.root,
+          right: node.right.root,
+        };
+      }
+      if (node.root > value) {
+        node = node.left;
+      } else {
+        node = node.right;
+      }
+    }
 
-	  if(node === null) {
-		console.log("The value given is not present in the BST");
-		return;
-	  }
+    if (node === null) {
+      console.log("The value given is not present in the BST");
+      return;
+    }
   }
 
   levelOrder(callback) {
@@ -65,27 +65,68 @@ class Tree {
       throw new Error("You need to provide a callback function!!!");
     }
 
-	let nodes = this.arr;
-	let queue = [];
-	queue.push(nodes);
+    let nodes = this.arr;
+    let queue = [];
+    queue.push(nodes);
 
-	while (queue.length > 0) {
-		if(queue[0].left !== null) {
-			queue.push(queue[0].left);
-		}
-		if(queue[0].right !== null) {
-			queue.push(queue[0].right);
-		}
-		callback(queue[0]);
-		queue.shift();
-	}
+    while (queue.length > 0) {
+      if (queue[0].left !== null) {
+        queue.push(queue[0].left);
+      }
+      if (queue[0].right !== null) {
+        queue.push(queue[0].right);
+      }
+      callback(queue[0]);
+      queue.shift();
+    }
   }
 
-  inOrder(callback) {}
+  inOrder(callback, arr) {
+    if (callback === undefined) {
+      throw new Error("No callback function provided");
+    }
 
-  preOrder(callback) {}
+    if (arr === null) {
+      return null;
+    } else if (arr !== null) {
+      callback(arr);
+      this.inOrder(callback, arr.left);
+      this.inOrder(callback, arr.right);
+    }
+    return;
+  }
 
-  postorder(callback) {}
+  preOrder(callback, arr) {
+    if (callback === undefined) {
+      throw new Error("No callback function provided");
+    }
+
+    if (arr === null) {
+      return null;
+    } else if (arr !== null) {
+      this.preOrder(callback, arr.left);
+      callback(arr);
+      this.preOrder(callback, arr.right);
+    }
+    return;
+  }
+
+  postOrder(callback, arr) {
+	if (callback === undefined) {
+		throw new Error("No callback function provided");
+	  }
+  
+	  if (arr === null) {
+		return null;
+	  } else if (arr !== null) {
+		console.log("left")
+		this.postOrder(callback, arr.left);
+		console.log("right")
+		this.postOrder(callback, arr.right);
+		callback(arr);
+	  }
+	  return;
+  }
 
   height(node) {}
 
