@@ -7,45 +7,24 @@ class Tree {
 
   insert(value) {
     let insertNode = new Node(value);
-    let tmp = this.arr;
-    if (insertNode.root < tmp.root) {
-      tmp = tmp.left;
-      while (tmp !== null) {
-        if (insertNode.root < tmp.root) {
-          if (tmp.left === null) {
-            tmp.left = insertNode;
-            return;
-          } else {
-            tmp = tmp.left;
-          }
-        } else {
-          if (tmp.right === null) {
-            tmp.right = insertNode;
-            return;
-          } else {
-            tmp = tmp.right;
-          }
-        }
+    let parentNode = null;
+    let currNode = this.arr;
+
+    while (currNode !== null) {
+      parentNode = currNode;
+      if (currNode.root > value) {
+        currNode = currNode.left;
+      } else if (currNode.root < value) {
+        currNode = currNode.right;
+      } else {
+        return this.arr;
       }
+    }
+
+    if (parentNode.root > value) {
+      parentNode.left = insertNode;
     } else {
-      tmp = tmp.right;
-      while (tmp !== null) {
-        if (insertNode.root < tmp.root) {
-          if (tmp.left === null) {
-            tmp.left = insertNode;
-            return;
-          } else {
-            tmp = tmp.left;
-          }
-        } else {
-          if (tmp.right === null) {
-            tmp.right = insertNode;
-            return;
-          } else {
-            tmp = tmp.right;
-          }
-        }
-      }
+      parentNode.right = insertNode;
     }
   }
 }
