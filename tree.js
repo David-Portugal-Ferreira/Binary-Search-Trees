@@ -28,7 +28,38 @@ class Tree {
     }
   }
 
-  deleteItem(value) {}
+  deleteItem(value) {
+    let node = this.arr;
+
+    // First Node
+    if (node.root === value) {
+      let leftNodes = node.left;
+      this.arr = node.right;
+      node = node.right.left;
+
+      while (node.left !== null) {
+        node = node.left;
+      }
+      node.left = leftNodes;
+    }
+
+    // Leaf Node
+    let prevNode = null;
+    while (node !== null) {
+      if (node.root === value) {
+        prevNode.left = null;
+        prevNode.right = null;
+      }
+      if (node.root > value) {
+        prevNode = node;
+        node = node.left;
+      } else {
+        prevNode = node;
+        node = node.right;
+      }
+    }
+    console.log(node);
+  }
 
   find(value) {
     if (this.arr.root === value)
