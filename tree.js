@@ -27,6 +27,27 @@ class Tree {
       parentNode.right = insertNode;
     }
   }
+
+  deleteItem(value) {
+	let currentNode = this.arr;
+	let parentNode = null;
+
+	while(currentNode !== null) {
+		if(currentNode.root === value) {
+			parentNode.left = currentNode.left;
+			parentNode.right = currentNode.right;
+			return;
+		}
+
+		if(currentNode.root > value) {
+			parentNode = currentNode;
+			currentNode = currentNode.left;
+		} else {
+			parentNode = currentNode;
+			currentNode = currentNode.right;
+		}
+	}
+  }
 }
 
 function buildTree(dataArray) {
@@ -81,7 +102,7 @@ function merge(left, rigth) {
 function balanceBinaryTree(arr) {
   if (arr.length <= 0) return null;
   let mid = Math.floor(arr.length / 2);
-  if (mid === 0) return new Node(arr);
+  if (mid === 0) return new Node(arr[0]);
 
   let node = new Node(arr[mid]);
   node.left = balanceBinaryTree(arr.slice(0, mid));
