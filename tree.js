@@ -28,26 +28,25 @@ class Tree {
     }
   }
 
-  deleteItem(value) {
-	let currentNode = this.arr;
-	let parentNode = null;
+  deleteItem(value) {}
 
-	while(currentNode !== null) {
-		if(currentNode.root === value) {
-			parentNode.left = currentNode.left;
-			parentNode.right = currentNode.right;
-			return;
-		}
+  find(value) {}
 
-		if(currentNode.root > value) {
-			parentNode = currentNode;
-			currentNode = currentNode.left;
-		} else {
-			parentNode = currentNode;
-			currentNode = currentNode.right;
-		}
-	}
-  }
+  levelOrder(callback) {}
+
+  inOrder(callback) {}
+
+  preOrder(callback) {}
+
+  postorder(callback) {}
+
+  height(node) {}
+
+  depth(node) {}
+
+  isBalanced() {}
+
+  rebalance() {}
 }
 
 function buildTree(dataArray) {
