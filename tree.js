@@ -58,7 +58,6 @@ class Tree {
         node = node.right;
       }
     }
-    console.log(node);
   }
 
   find(value) {
