@@ -8,9 +8,13 @@ console.log(tree.arr)    // Works
 // tree.levelOrder();
 // console.log(tree.find(7));   // Works
 // tree.levelOrder(printNodeRoot);
-// tree.inOrder(printNodeRoot, tree.arr);   // Works
-// tree.preOrder(printNodeRoot, tree.arr);  //Works
-tree.postOrder(printNodeRoot, tree.arr);
+
+console.log("\nPre Order");
+tree.preOrder(printNodeRoot, tree.arr);  //Works
+console.log("\nIn Order");
+tree.inOrder(printNodeRoot, tree.arr);   // Works
+console.log("\nPost Order");
+tree.postOrder(printNodeRoot, tree.arr);    // Works
 
 
 function printNodeRoot(node) {

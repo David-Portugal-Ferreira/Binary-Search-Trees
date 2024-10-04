@@ -81,21 +81,6 @@ class Tree {
     }
   }
 
-  inOrder(callback, arr) {
-    if (callback === undefined) {
-      throw new Error("No callback function provided");
-    }
-
-    if (arr === null) {
-      return null;
-    } else if (arr !== null) {
-      callback(arr);
-      this.inOrder(callback, arr.left);
-      this.inOrder(callback, arr.right);
-    }
-    return;
-  }
-
   preOrder(callback, arr) {
     if (callback === undefined) {
       throw new Error("No callback function provided");
@@ -104,28 +89,41 @@ class Tree {
     if (arr === null) {
       return null;
     } else if (arr !== null) {
-      this.preOrder(callback, arr.left);
       callback(arr);
+      this.preOrder(callback, arr.left);
       this.preOrder(callback, arr.right);
     }
     return;
   }
 
+  inOrder(callback, arr) {
+    if (callback === undefined) {
+      throw new Error("No callback function provided");
+    }
+
+    if (arr === null) {
+      return null;
+    } else if (arr !== null) {
+      this.inOrder(callback, arr.left);
+      callback(arr);
+      this.inOrder(callback, arr.right);
+    }
+    return;
+  }
+
   postOrder(callback, arr) {
-	if (callback === undefined) {
-		throw new Error("No callback function provided");
-	  }
-  
-	  if (arr === null) {
-		return null;
-	  } else if (arr !== null) {
-		console.log("left")
-		this.postOrder(callback, arr.left);
-		console.log("right")
-		this.postOrder(callback, arr.right);
-		callback(arr);
-	  }
-	  return;
+    if (callback === undefined) {
+      throw new Error("No callback function provided");
+    }
+
+    if (arr === null) {
+      return null;
+    } else if (arr !== null) {
+      this.postOrder(callback, arr.left);
+      this.postOrder(callback, arr.right);
+      callback(arr);
+    }
+    return;
   }
 
   height(node) {}
