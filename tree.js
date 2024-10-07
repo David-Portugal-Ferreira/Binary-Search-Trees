@@ -190,6 +190,8 @@ class Tree {
         depth++;
       }
     }
+
+	return "The node is not present in the tree";
   }
 
   isBalanced() {}
