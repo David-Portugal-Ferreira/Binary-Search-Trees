@@ -57,25 +57,24 @@ class Tree {
         }
         nodeLeft.left = leftSideNodes;
         return;
-
       } else if (node.right.root === value) {
-		let leftSideNodes = node.right.left;
-		node.right = node.right.right;
-		if(node.right !== null && node.right.left === null) {
-			node.right.left = leftSideNodes;
-			return;
-		}
-		if(node.right === null) {
-			node.right = leftSideNodes;
-			return
-		}
-		let leftNodes = node.right.left;
-		while(leftNodes !== null && leftNodes.left !== null) {
-			leftNodes = leftNodes.left;
-		}
-		leftNodes.left = leftSideNodes;
-		return
-	  }
+        let leftSideNodes = node.right.left;
+        node.right = node.right.right;
+        if (node.right !== null && node.right.left === null) {
+          node.right.left = leftSideNodes;
+          return;
+        }
+        if (node.right === null) {
+          node.right = leftSideNodes;
+          return;
+        }
+        let leftNodes = node.right.left;
+        while (leftNodes !== null && leftNodes.left !== null) {
+          leftNodes = leftNodes.left;
+        }
+        leftNodes.left = leftSideNodes;
+        return;
+      }
 
       if (node.root > value) {
         node = node.left;
@@ -163,7 +162,6 @@ class Tree {
       callback(arr);
       this.inOrder(callback, arr.right);
     }
-    return;
   }
 
   postOrder(callback, arr) {
@@ -219,9 +217,18 @@ class Tree {
     return "The node is not present in the tree";
   }
 
-  isBalanced() {}
+  isBalanced() {
 
-  rebalance() {}
+  }
+
+  rebalance() {
+	let newArr = [];
+	newArr.push(this.inOrder((arr) => {
+		newArr.push(arr.root);
+	}, this.arr));
+
+	console.log(newArr)
+  }
 }
 
 function buildTree(dataArray) {
