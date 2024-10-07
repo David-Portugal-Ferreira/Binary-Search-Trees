@@ -57,6 +57,7 @@ class Tree {
         }
         nodeLeft.left = leftSideNodes;
         return;
+		
       } else if (node.right.root === value) {
 		let leftSideNodes = node.right.left;
 		node.right = node.right.right;
