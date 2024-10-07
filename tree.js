@@ -218,7 +218,27 @@ class Tree {
   }
 
   isBalanced() {
+	let leftSideQueue = [this.arr.left]; 
+	let leftSideLevel = 0;
+	let rightSideQueue = [this.arr.right]; 
+	let rightSideLevel = 0;
 
+	while(leftSideQueue.length > 0) {
+		let node = leftSideQueue.shift();
+		if(node.left !== null) leftSideQueue.push(node.left);
+		if(node.right !== null) leftSideQueue.push(node.right);
+		leftSideLevel++;
+	}
+
+	while(rightSideQueue.length > 0) {
+		let node = rightSideQueue.shift();
+		if(node.left !== null) rightSideQueue.push(node.left);
+		if(node.right !== null) rightSideQueue.push(node.right);
+		rightSideLevel++;
+	}
+
+	let result = rightSideLevel - leftSideLevel;
+	return result === 0 || result === 1 || result === -1 ? console.log(true) : console.log(false);
   }
 
   rebalance() {
