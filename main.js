@@ -1,25 +1,39 @@
 const Tree = require("./tree")
 
-let tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
+let arr = [];
+for(let i = 0; i < 100; i++) {
+    let numb = Math.floor(Math.random() * 99);
+    arr.push(numb);
+}
 
-// console.log(tree.arr) // Works
-// tree.insert(87)  // Works
-// tree.deleteItem(6345);  // Works
-// console.log(tree.find(7));   // Works
-// tree.levelOrder(printNodeRoot);  // Works
+let tree = new Tree(arr);
+tree.isBalanced();
+console.log("\nLevel Order");
+tree.levelOrder(printNodeRoot, tree.arr)
+console.log("\nPre Order");
+tree.preOrder(printNodeRoot, tree.arr);
+console.log("\nIn Order");
+tree.inOrder(printNodeRoot, tree.arr);
+console.log("\nPost Order");
+tree.postOrder(printNodeRoot, tree.arr)
+function printNodeRoot(node) {   // Works
+    console.log(`Root: ${node.root}`)
+}
 
-// console.log("\nPre Order");
-// tree.preOrder(printNodeRoot, tree.arr);  //Works
-// console.log("\nIn Order");
-// tree.inOrder(printNodeRoot, tree.arr);   // Works
-// console.log("\nPost Order");
-// tree.postOrder(printNodeRoot, tree.arr);    // Works
-// function printNodeRoot(node) {   // Works
-//     console.log(`Root: ${node.root}`)
-// }
+tree.insert(102);
+tree.insert(130);
+tree.insert(124);
+tree.insert(109);
+tree.insert(178);
+tree.isBalanced()
+tree.rebalance();
+tree.isBalanced()
 
-console.log(tree.height(4)); // Not Working
-// console.log(tree.depth(6)) // Works
-
-// tree.isBalanced();   // Works
-// tree.rebalance();   // Works
+console.log("\nLevel Order");
+tree.levelOrder(printNodeRoot, tree.arr)
+console.log("\nPre Order");
+tree.preOrder(printNodeRoot, tree.arr);
+console.log("\nIn Order");
+tree.inOrder(printNodeRoot, tree.arr);
+console.log("\nPost Order");
+tree.postOrder(printNodeRoot, tree.arr)

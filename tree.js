@@ -85,22 +85,12 @@ class Tree {
   }
 
   find(value) {
-    if (this.arr.root === value)
-      return {
-        root: this.arr.root,
-        left: this.arr.left,
-        right: this.arr.right,
-      };
+    if (this.arr.root === value) return this.arr;
 
     let node = this.arr;
     while (node !== null) {
-      if ((node.root === value)) {
-        // return {
-        //   root: node.root,
-        //   left: node.left.root,
-        //   right: node.right.root,
-        // };
-		return node;
+      if (node.root === value) {
+        return node;
       }
       if (node.root > value) {
         node = node.left;
@@ -111,7 +101,7 @@ class Tree {
 
     if (node === null) {
       console.log("The value given is not present in the BST");
-      return;
+      return false;
     }
   }
 
@@ -181,12 +171,9 @@ class Tree {
   }
 
   height(nodeSearch) {
-    let level = 0;
-	let nodeQueue = [];
 
-	let node = this.find(nodeSearch);
-
-	console.log(node);
+    let node = this.find(nodeSearch);
+	
   }
 
   depth(nodeDepth) {
@@ -208,36 +195,38 @@ class Tree {
   }
 
   isBalanced() {
-	let leftSideQueue = [this.arr.left]; 
-	let leftSideLevel = 0;
-	let rightSideQueue = [this.arr.right]; 
-	let rightSideLevel = 0;
+    let leftSideQueue = [this.arr.left];
+    let leftSideLevel = 0;
+    let rightSideQueue = [this.arr.right];
+    let rightSideLevel = 0;
 
-	while(leftSideQueue.length > 0) {
-		let node = leftSideQueue.shift();
-		if(node.left !== null) leftSideQueue.push(node.left);
-		if(node.right !== null) leftSideQueue.push(node.right);
-		leftSideLevel++;
-	}
+    while (leftSideQueue.length > 0) {
+      let node = leftSideQueue.shift();
+      if (node.left !== null) leftSideQueue.push(node.left);
+      if (node.right !== null) leftSideQueue.push(node.right);
+      leftSideLevel++;
+    }
 
-	while(rightSideQueue.length > 0) {
-		let node = rightSideQueue.shift();
-		if(node.left !== null) rightSideQueue.push(node.left);
-		if(node.right !== null) rightSideQueue.push(node.right);
-		rightSideLevel++;
-	}
+    while (rightSideQueue.length > 0) {
+      let node = rightSideQueue.shift();
+      if (node.left !== null) rightSideQueue.push(node.left);
+      if (node.right !== null) rightSideQueue.push(node.right);
+      rightSideLevel++;
+    }
 
-	let result = rightSideLevel - leftSideLevel;
-	return result === 0 || result === 1 || result === -1 ? console.log(true) : console.log(false);
+    let result = rightSideLevel - leftSideLevel;
+    return result === 0 || result === 1 || result === -1
+      ? console.log(true)
+      : console.log(false);
   }
 
   rebalance() {
-	let newArr = [];
-	this.inOrder((arr) => {
-		newArr.push(arr.root);
-	}, this.arr);
+    let newArr = [];
+    this.inOrder((arr) => {
+      newArr.push(arr.root);
+    }, this.arr);
 
-	this.arr = balanceBinaryTree(newArr);
+    this.arr = balanceBinaryTree(newArr);
   }
 }
 
