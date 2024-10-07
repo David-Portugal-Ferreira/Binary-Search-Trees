@@ -57,7 +57,24 @@ class Tree {
         }
         nodeLeft.left = leftSideNodes;
         return;
-      }
+      } else if (node.right.root === value) {
+		let leftSideNodes = node.right.left;
+		node.right = node.right.right;
+		if(node.right !== null && node.right.left === null) {
+			node.right.left = leftSideNodes;
+			return;
+		}
+		if(node.right === null) {
+			node.right = leftSideNodes;
+			return
+		}
+		let leftNodes = node.right.left;
+		while(leftNodes !== null && leftNodes.left !== null) {
+			leftNodes = leftNodes.left;
+		}
+		leftNodes.left = leftSideNodes;
+		return
+	  }
 
       if (node.root > value) {
         node = node.left;
