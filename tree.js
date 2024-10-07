@@ -43,18 +43,25 @@ class Tree {
       node.left = leftNodes;
     }
 
-    // Leaf Node
-    let prevNode = null;
     while (node !== null) {
-      if (node.root === value && node.left === null && node.right === null) {
-        prevNode.left = null;
-        prevNode.right = null;
+      if (node.left.root === value) {
+        let leftSideNodes = node.left.left;
+        node.left = node.left.right;
+        if (node.left === null) {
+          node.left = leftSideNodes;
+          return;
+        }
+        let nodeLeft = node.left;
+        while (nodeLeft !== null && nodeLeft.left !== null) {
+          nodeLeft = nodeLeft.left;
+        }
+        nodeLeft.left = leftSideNodes;
+        return;
       }
+
       if (node.root > value) {
-        prevNode = node;
         node = node.left;
       } else {
-        prevNode = node;
         node = node.right;
       }
     }
@@ -191,7 +198,7 @@ class Tree {
       }
     }
 
-	return "The node is not present in the tree";
+    return "The node is not present in the tree";
   }
 
   isBalanced() {}
