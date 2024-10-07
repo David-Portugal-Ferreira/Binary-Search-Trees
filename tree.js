@@ -223,11 +223,11 @@ class Tree {
 
   rebalance() {
 	let newArr = [];
-	newArr.push(this.inOrder((arr) => {
+	this.inOrder((arr) => {
 		newArr.push(arr.root);
-	}, this.arr));
+	}, this.arr);
 
-	console.log(newArr)
+	this.arr = balanceBinaryTree(newArr);
   }
 }
 

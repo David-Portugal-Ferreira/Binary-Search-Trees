@@ -23,6 +23,7 @@ let tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
 
 // tree.insert(6)  // Working
 // console.log(tree.height(4)); // Not Working
-tree.rebalance();   // Not Working
+
+tree.rebalance();   // Works
 
 // console.log(tree.depth(6)) // Works
