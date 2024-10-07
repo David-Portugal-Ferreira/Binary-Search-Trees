@@ -94,12 +94,13 @@ class Tree {
 
     let node = this.arr;
     while (node !== null) {
-      if ((node.root = value)) {
-        return {
-          root: node.root,
-          left: node.left.root,
-          right: node.right.root,
-        };
+      if ((node.root === value)) {
+        // return {
+        //   root: node.root,
+        //   left: node.left.root,
+        //   right: node.right.root,
+        // };
+		return node;
       }
       if (node.root > value) {
         node = node.left;
@@ -179,24 +180,13 @@ class Tree {
     return;
   }
 
-  height(nodeHeight) {
-    let node = this.arr;
-    let height = 0;
-    let wantedNode = null;
+  height(nodeSearch) {
+    let level = 0;
+	let nodeQueue = [];
 
-    while (node !== null) {
-      if (node.root === nodeHeight) {
-        wantedNode = node;
-        break;
-      }
-      if (node.root > nodeHeight) {
-        node = node.left;
-      } else {
-        node = node.right;
-      }
-    }
+	let node = this.find(nodeSearch);
 
-    return wantedNode;
+	console.log(node);
   }
 
   depth(nodeDepth) {
